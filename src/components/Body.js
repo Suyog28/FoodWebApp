@@ -10,7 +10,7 @@ const Body = () => {
     if (onlineStatus === false) return <h1>Look like you'r offline!! Please check your internet connection!!!</h1>
     if (listRest.length === 0) {
         return <Shimmer />
-    }
+    } 
     return (
         <div className='body'>
             <div className="your-choice">

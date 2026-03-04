@@ -5,18 +5,18 @@ import useOnlineStatus from "../utils/useOnlineStatus"
 const Header = () => {
     const onlineStatus = useOnlineStatus()
     return (
-        <div className='header'>
+        <div className='flex justify-between bg-orange-600 shadow-lg'>
             <div>
-                <Link to="/"><img src={LOGO_URL} alt="Logo" width={50} /></Link> 
+                <Link to="/"><img src={LOGO_URL} alt="Logo" className="w-20"/></Link> 
             </div>
-            <div className='list'>
-                <ul >
-                    <li>Status:{onlineStatus ? " ✅":" 🔴"}</li>
-                    <li><Link to="/about">ABOUT US</Link></li>
-                    <li><Link to="/">HOME</Link></li>
-                    <li><Link to="/contact">CONTACT US</Link></li>
-                    <li><Link to="/InstamartStores">Stores</Link></li>
-                    <li><Link>SIGN IN</Link></li>
+            <div className='flex items-center px-4 mx-4'>
+                <ul className="flex text-white ">
+                    <li className="px-2 hover:text-black hover:font-medium">Status:{onlineStatus ? " ✅":" 🔴"}</li>
+                    <li className="px-2 hover:text-black hover:font-medium"><Link to="/about">About</Link></li>
+                    <li className="px-2 hover:text-black hover:font-medium"><Link to="/">Home</Link></li>
+                    <li className="px-2 hover:text-black hover:font-medium"><Link to="/contact">Contact</Link></li>
+                    <li className="px-2 hover:text-black hover:font-medium"><Link to="/InstamartStores">Stores</Link></li>
+                    <li className="px-2 hover:text-black hover:font-medium"><Link>Login</Link></li>
                 </ul>
             </div>
         </div>

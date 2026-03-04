@@ -10,7 +10,10 @@ import {
 } from "react-router";
 import Error from "./components/Error";
 import Menu from "./components/Menu";
+import { lazy, Suspense } from "react";
+import Shimmer from "./components/Shimmer";
 
+const InstamartStores = lazy(()=>import("./components/InstamartStores"))
 const AppLayout = () => {
     return (
         <div>
@@ -41,6 +44,13 @@ const appRoutes = createBrowserRouter([
             {
                 path: "/listRestaurantMenu/:id",
                 element: <Menu />
+            },
+            {
+                path: "/InstamartStores",
+                element:
+                    <Suspense fallback={<Shimmer />}>
+                        <InstamartStores />
+                    </Suspense>
             }
         ],
         errorElement: <Error />,

@@ -12,10 +12,11 @@ const Header = () => {
             <div className='list'>
                 <ul >
                     <li>Status:{onlineStatus ? " ✅":" 🔴"}</li>
-                    <Link to="/"><li>HOME</li></Link>
-                    <Link to="/about"><li>ABOUT US</li></Link>
-                    <Link to="/contact"><li>CONTACT US</li></Link>
-                    <Link><li>SIGN IN</li></Link>
+                    <li><Link to="/about">ABOUT US</Link></li>
+                    <li><Link to="/">HOME</Link></li>
+                    <li><Link to="/contact">CONTACT US</Link></li>
+                    <li><Link to="/InstamartStores">Stores</Link></li>
+                    <li><Link>SIGN IN</Link></li>
                 </ul>
             </div>
         </div>

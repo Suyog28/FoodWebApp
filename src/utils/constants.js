@@ -4,4 +4,4 @@ export const CARD_URL = "https://media-assets.swiggy.com/swiggy/image/upload/fl_
 
 export const SW_URL_API = "https://corsproxy.io/?url=https://namastedev.com/api/v1/listRestaurants"
 
-export const MENU_URL = "https://corsproxy.io/?url=https://namastedev.com/api/v1/listRestaurantMenu/123456"
+export const MENU_URL = "https://corsproxy.io/?url=https://namastedev.com/api/v1/listRestaurantMenu/"

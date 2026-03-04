@@ -2,10 +2,12 @@ import { useEffect, useState } from "react"
 import ResCards from "./ResCards"
 import { SW_URL_API } from "../utils/constants"
 import Shimmer from "./Shimmer"
+import { Link } from "react-router"
 
 const Body = () => {
     const [listRest, setListRest] = useState([]);
-    const [searchText, setSearchText] = useState(" ");
+    const [originalList, setOriginalList] = useState([]);
+    const [searchText, setSearchText] = useState("");
 
     useEffect(() => {
         fetchData()
@@ -14,7 +16,10 @@ const Body = () => {
     const fetchData = async () => {
         const data = await fetch(SW_URL_API)
         const json = await data.json();
-        setListRest(json?.data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+        const restaurants = json?.data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants || []
+        const filtered = restaurants.filter(item => item?.info?.cloudinaryImageId !== "rng/md/carousel/production/indian101")
+        setOriginalList(filtered)
+        setListRest(filtered)
     }
 
     if (listRest.length === 0) {
@@ -28,11 +33,10 @@ const Body = () => {
                         onChange={(e) => setSearchText(e.target.value)}
                     />
                     <button onClick={() => {
-                        setListRest(
-                            listRest.filter(res =>
-                                res.info.name.toLowerCase().includes(searchText.toLowerCase())
-                            )
+                        const filtered = originalList.filter(res =>
+                            res.info.name.toLowerCase().includes(searchText.toLowerCase())
                         );
+                        setListRest(filtered);
                     }}>
                         Search
                     </button>
@@ -40,19 +44,21 @@ const Body = () => {
                 <div className="filter">
                     <button onClick={
                         () => {
-                            const filterList = listRest.filter(res => res.info.avgRating > 4)
+                            const filterList = originalList.filter(res => res.info.avgRating > 4)
                             setListRest(filterList)
                         }
                     }>Top Rated</button>
 
                     <button onClick={() => {
-                        const pizza = listRest.filter(res => res.info.cuisines.some(item => item.includes("Pizza")))
+                        const pizza = originalList.filter(res => res.info.cuisines.some(item => item.includes("Pizza")))
                         setListRest(pizza)
                     }}>Pizza</button>
                 </div>
             </div>
             <div className="res-container">
-                {listRest.map((restaurants) => <ResCards key={restaurants.info.id} resData={restaurants} />)}
+                {listRest.map((restaurants) => <Link to={"/listRestaurantMenu/"+ restaurants.info.id} key={restaurants.info.id}>
+                    <ResCards  resData={restaurants} />
+                </Link>)}
             </div>
         </div>
     )

@@ -1,27 +1,13 @@
-import { useEffect, useState } from "react"
 import ResCards from "./ResCards"
-import { SW_URL_API } from "../utils/constants"
 import Shimmer from "./Shimmer"
 import { Link } from "react-router"
+import useOnlineStatus from "../utils/useOnlineStatus"
+import useRestaurants from "../utils/useRestaurants"
 
 const Body = () => {
-    const [listRest, setListRest] = useState([]);
-    const [originalList, setOriginalList] = useState([]);
-    const [searchText, setSearchText] = useState("");
-
-    useEffect(() => {
-        fetchData()
-    }, [])
-
-    const fetchData = async () => {
-        const data = await fetch(SW_URL_API)
-        const json = await data.json();
-        const restaurants = json?.data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants || []
-        const filtered = restaurants.filter(item => item?.info?.cloudinaryImageId !== "rng/md/carousel/production/indian101")
-        setOriginalList(filtered)
-        setListRest(filtered)
-    }
-
+    const { listRest, originalList, searchText } = useRestaurants()
+    const onlineStatus = useOnlineStatus()
+    if (onlineStatus === false) return <h1>Look like you'r offline!! Please check your internet connection!!!</h1>
     if (listRest.length === 0) {
         return <Shimmer />
     }
@@ -56,8 +42,8 @@ const Body = () => {
                 </div>
             </div>
             <div className="res-container">
-                {listRest.map((restaurants) => <Link to={"/listRestaurantMenu/"+ restaurants.info.id} key={restaurants.info.id}>
-                    <ResCards  resData={restaurants} />
+                {listRest.map((restaurants) => <Link to={"/listRestaurantMenu/" + restaurants.info.id} key={restaurants.info.id}>
+                    <ResCards resData={restaurants} />
                 </Link>)}
             </div>
         </div>

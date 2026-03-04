@@ -223,3 +223,40 @@
   white-space: nowrap;
   margin-left: 16px;
 }
+.users-list{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  align-items: stretch; /* ensure cards line up evenly */
+  margin: 30px;
+}
+.user-card{
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px auto;
+  /* fixed width and min-height for consistency */
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* style the image inside user cards so they don't stretch the container */
+.user-card img{
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-top: 10px;
+}
+
+.our-team-title{
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}

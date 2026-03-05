@@ -7,7 +7,7 @@ const Footer = () => {
 
                 {/* Brand */}
                 <div>
-                    <h2 className="text-xl font-semibold">MyFoodApp</h2>
+                    <h2 className="text-xl font-semibold">FoodExpress</h2>
                     <p className="text-sm mt-2 text-orange-100">
                         Delicious food delivered to your doorstep.
                     </p>
@@ -49,7 +49,7 @@ const Footer = () => {
 
             {/* Bottom */}
             <div className="border-t border-orange-500 text-center py-3 text-sm text-orange-100">
-                © {new Date().getFullYear()} MyFoodApp
+                © {new Date().getFullYear()} FoodExpress
             </div>
 
         </footer>

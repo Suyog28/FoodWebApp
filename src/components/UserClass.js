@@ -29,22 +29,50 @@ class UserClass extends React.Component{
         const { users } = this.state;
         console.log("Child Render")
         return (
-            <div>
-            <div className="our-team-title"><h1>Our Team</h1></div>
-            <div className="users-list" >
-                {users.map((item) => 
-                (
-                    <div className="user-card" key={item.id}>
-                        <div>
-                            <h2>{item.firstName + " " + item.lastName}</h2>
-                            <h3>Age: {item.age}</h3>
-                            <h4>Location: {item.address.address}</h4>
-                        </div>
-                        <img src={item.image}></img>
-                    </div>
-                )
-               )}
+            <div className="max-w-7xl mx-auto px-6 py-10">
+
+                {/* Title */}
+                <div className="text-center mb-10">
+                    <h1 className="text-3xl font-bold text-gray-800">Our Team</h1>
+                    <p className="text-gray-500 mt-2">Meet the amazing people behind our work</p>
                 </div>
+
+                {/* Users Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+
+                    {users.map((item) => (
+
+                        <div
+                            key={item.id}
+                            className="bg-white rounded-2xl shadow-md hover:shadow-xl transform hover:-translate-y-1 transition duration-300 p-6 text-center"
+                        >
+
+                            {/* Avatar */}
+                            <img
+                                src={item.image}
+                                alt={item.firstName}
+                                className="w-24 h-24 rounded-full mx-auto object-cover border mb-4"
+                            />
+
+                            {/* User Info */}
+                            <h2 className="text-lg font-semibold text-gray-800">
+                                {item.firstName + " " + item.lastName}
+                            </h2>
+
+                            <p className="text-gray-500 text-sm mt-1">
+                                Age: {item.age}
+                            </p>
+
+                            <p className="text-gray-500 text-sm">
+                                📍 {item.address.address}
+                            </p>
+
+                        </div>
+
+                    ))}
+
+                </div>
+
             </div>
         )
     }

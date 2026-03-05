@@ -21,7 +21,7 @@ const useRestaurants = () => {
     }
 
 
-    return { listRest, originalList, searchText}
+    return { listRest, originalList, searchText, setSearchText, setOriginalList, setListRest }
 }
 
 export default useRestaurants;
